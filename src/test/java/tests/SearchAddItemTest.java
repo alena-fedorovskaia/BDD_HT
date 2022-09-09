@@ -27,44 +27,44 @@ public class SearchAddItemTest extends BaseTest {
 
     @When("User enters item search value")
     public void userEntersValue() {
-        Assert.assertTrue(mainPage.isSearchFiledAvailable());
+        Assert.assertTrue(mainPage.isSearchFiledAvailable(), "Search field is not available");
         mainPage.setSearchValue(ITEM_NAME);
     }
 
     @And("User is navigated to SearchResults Page")
     public void userNavigatesToSearchResults() {
-        Assert.assertTrue(mainPage.isSearchButtonAvailable());
+        Assert.assertTrue(mainPage.isSearchButtonAvailable(), "Search button is not available");
         searchResultPage = mainPage.clickSearchButton();
     }
 
     @And("User clicks on item and gets navigated to the Item Page")
     public void userNavigatesToItemPage() {
-        Assert.assertTrue(searchResultPage.isFirstSearchResultAvailable());
-        Assert.assertTrue(searchResultPage.getFirstSearchResultValue().contains(ITEM_NAME));
+        Assert.assertTrue(searchResultPage.isFirstSearchResultAvailable(), "Item is not available");
+        Assert.assertTrue(searchResultPage.getFirstSearchResultValue().contains(ITEM_NAME), "Search result doesn't contain the searched word ");
 
         itemPage = searchResultPage.clickFirstSearchResult();
     }
 
     @And("User adds item to the cart")
     public void userAddsItemToCart() {
-        Assert.assertTrue(itemPage.isAddToCartAvailable());
+        Assert.assertTrue(itemPage.isAddToCartAvailable(), "Add to Cart Button is not available");
         addToCartConfirmationPage = itemPage.clickAddtoCartButton();
     }
 
     @And("User is navigated to Confirmation Page")
     public void userNavigatesToConfirmation() {
-        Assert.assertEquals(addToCartConfirmationPage.getAddedToCartMessage(), ADDED_MESSAGE);
+        Assert.assertEquals(addToCartConfirmationPage.getAddedToCartMessage(), ADDED_MESSAGE, "Confirmation message is not displayed");
     }
 
     @And("User proceeds to check out")
     public void userProceedsToCheckOut() {
-        Assert.assertTrue(addToCartConfirmationPage.isToCheckOutAvailable());
+        Assert.assertTrue(addToCartConfirmationPage.isToCheckOutAvailable(), "Check out button is not available");
         signInPage = addToCartConfirmationPage.clickToCheckOut();
     }
 
     @Then("User is successfully navigated to SignIn Page")
     public void userNavigatesToSignIn() {
-        Assert.assertTrue(signInPage.isContinueButtonAvailable());
+        Assert.assertTrue(signInPage.isContinueButtonAvailable(), "Continue button is not available");
         softAssert.assertAll();
     }
 }

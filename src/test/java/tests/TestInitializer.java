@@ -10,7 +10,7 @@ public class TestInitializer extends BaseTest {
     }
 
     @After
-    public void afterScenario(){
+    public void afterScenario() {
         cleanUp();
     }
 }

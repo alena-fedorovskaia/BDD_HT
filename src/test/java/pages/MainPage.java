@@ -33,7 +33,7 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"glow-ingress-line2\"]")
     WebElement deliveryCountry;
 
-    @FindBy(xpath ="//*[@id=\"icp-nav-flyout\"]" )
+    @FindBy(xpath = "//*[@id=\"icp-nav-flyout\"]")
     WebElement LangCurSettings;
 
     public MainPage(WebDriver driver, SoftAssert softAssert) {
@@ -74,7 +74,9 @@ public class MainPage extends BasePage {
         countryDropDown.click();
     }
 
-    public boolean isDoneButtonAvailable() { return doneButton.isDisplayed() && doneButton.isEnabled(); }
+    public boolean isDoneButtonAvailable() {
+        return doneButton.isDisplayed() && doneButton.isEnabled();
+    }
 
     public void clickDoneButton() {
         doneButton = new WebDriverWait(driver, Duration.ofSeconds(5))
@@ -94,10 +96,11 @@ public class MainPage extends BasePage {
         return deliveryCountry.getText();
     }
 
+    public boolean isLangCurSettingsAvailable() {
+        return LangCurSettings.isDisplayed() && LangCurSettings.isEnabled();
+    }
 
-    public boolean isLangCurSettingsAvailable() { return LangCurSettings.isDisplayed() && LangCurSettings.isEnabled(); }
-
-    public LanguageCurrencySettingsPage clickLangCurSettings(){
+    public LanguageCurrencySettingsPage clickLangCurSettings() {
         LangCurSettings.click();
         return new LanguageCurrencySettingsPage(driver, softAssert);
     }

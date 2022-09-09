@@ -21,19 +21,21 @@ public class UpdateDeliveryCountryTest extends BaseTest {
     }
 
     @When("User clicks DeliveryTo Field")
-    public void userClicksDeliveryTo() { mainPage.clickDeliverTo(); }
+    public void userClicksDeliveryTo() {
+        mainPage.clickDeliverTo();
+    }
 
     @And("User selects country from drop down list and confirms it")
     public void userSelectsCountry() {
         mainPage.setCountry(DELIVERY_COUNTRY);
-        Assert.assertTrue(mainPage.isDoneButtonAvailable());
+        Assert.assertTrue(mainPage.isDoneButtonAvailable(), "Done Button is not available");
         mainPage.clickDoneButton();
     }
 
     @Then("Selected delivery country is displayed on Main Page")
     public void deliveryCountrySuccessfullyChanged() {
         mainPage.waitForDeliveryCountryChanged(DELIVERY_COUNTRY);
-        Assert.assertEquals(mainPage.getDeliveryCountry(), DELIVERY_COUNTRY);
+        Assert.assertEquals(mainPage.getDeliveryCountry(), DELIVERY_COUNTRY, "Updated delivery country is not displayed");
         softAssert.assertAll();
     }
 }
